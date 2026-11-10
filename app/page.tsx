@@ -11,8 +11,6 @@ export default function Page() {
       <main id="top">
         <Hero />
 
-        <hr className="rule" />
-
         <section id="turn">
           <div className="wrap">
             <div className="head">
@@ -236,7 +234,7 @@ export default function Page() {
               {`\ncargo run --release`}
             </code>
           </pre>
-          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+          <div className="close-actions">
             <a className="btn btn-primary" href={REPO}>
               Read the source
             </a>
@@ -248,7 +246,7 @@ export default function Page() {
       </main>
 
       <footer className="foot">
-        <span>IRA · 45 tests, no network or microphone needed</span>
+        <span>45 tests, none of them need a network or a microphone.</span>
         <nav>
           <a href={`${REPO}/blob/main/docs/ARCHITECTURE.md`}>Architecture</a>
           <a href={`${REPO}/blob/main/docs/BASELINE.md`}>Measured latency</a>

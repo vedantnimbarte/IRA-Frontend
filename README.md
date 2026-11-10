@@ -22,7 +22,7 @@ spoken, and freezes the clock at the moment you took the floor.
 | File | Job |
 |---|---|
 | `components/Orb.tsx` | The orb: icosahedron + simplex displacement, particle shell, bloom. One shader driven by turn state. |
-| `components/Hero.tsx` | The scripted turn and the interrupt. Owns the state the orb reads. |
+| `components/Hero.tsx` | The scripted turn, the HUD dial around the orb, and the interrupt. Owns the state the orb reads. |
 | `components/Turn.tsx` | The time axis, lit by scroll position. |
 | `components/Nav.tsx` | Fixed rail and the IRA mark. |
 | `app/globals.css` | The whole design system. No framework. |
@@ -33,8 +33,9 @@ Three.js is the only runtime dependency beyond Next and React.
 ## Editing
 
 Colours, type and spacing are custom properties at the top of `app/globals.css`.
-Amber (`--amber`) is deliberately used in exactly one place — the confirmation
-gate — so adding a second use costs the first one its meaning.
+Type is one family, Archivo: its width axis does the work — expanded for
+headings and HUD readouts, normal width for reading. Amber (`--amber`) means
+"you took control" and appears only for the interrupt and the confirmation gate.
 
 Orb behaviour is the `TARGETS` table at the top of `Orb.tsx`: one row per turn
 state, and every uniform eases toward the row rather than snapping.

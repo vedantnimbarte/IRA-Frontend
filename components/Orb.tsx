@@ -157,11 +157,10 @@ export default function Orb({ state }: { state: OrbState }) {
 
     const scene = new THREE.Scene()
     const camera = new THREE.PerspectiveCamera(42, size().w / size().h, 0.1, 100)
-    const dolly = () => (camera.aspect < 1 ? 9.8 : 7.0)
-    camera.position.z = dolly()
+    // The stage is square now, so one distance frames the orb inside the HUD dial.
+    camera.position.z = 7
 
     const group = new THREE.Group()
-    group.position.y = -1.5
     scene.add(group)
 
     const uniforms = {
@@ -252,7 +251,6 @@ export default function Orb({ state }: { state: OrbState }) {
       const { w, h } = size()
       if (!w || !h) return
       camera.aspect = w / h
-      camera.position.z = dolly()
       camera.updateProjectionMatrix()
       renderer.setSize(w, h)
       composer.setSize(w, h)
@@ -314,7 +312,7 @@ export default function Orb({ state }: { state: OrbState }) {
       // Parallax leans the whole assembly toward the cursor.
       group.rotation.x += (pointer.y * 0.22 - group.rotation.x) * dt * 2.2
       camera.position.x += (pointer.x * 0.3 - camera.position.x) * dt * 2.2
-      camera.lookAt(0, group.position.y * 0.5, 0)
+      camera.lookAt(0, 0, 0)
 
       composer.render()
     }
