@@ -24,6 +24,8 @@ spoken, and freezes the clock at the moment you took the floor.
 | `components/Orb.tsx` | The orb: icosahedron + simplex displacement, particle shell, bloom. One shader driven by turn state. |
 | `components/Hero.tsx` | The scripted turn, the HUD dial around the orb, and the interrupt. Owns the state the orb reads. |
 | `components/Turn.tsx` | The time axis, lit by scroll position. |
+| `components/Widgets.tsx` | The app's corner widgets rebuilt in HTML, following the hero's turn. |
+| `components/turnStore.ts` | The hero's turn, shared with the widgets, and their Run and Cut buttons. |
 | `components/Nav.tsx` | Fixed rail and the IRA mark. |
 | `app/globals.css` | The whole design system. No framework. |
 | `app/page.tsx` | Copy and structure. |

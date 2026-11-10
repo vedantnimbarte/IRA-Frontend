@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Orb, { type OrbState } from './Orb'
+import { turnStore } from './turnStore'
 
 const HEARD = "what's on my calendar tomorrow"
 const REPLY =
@@ -119,6 +120,23 @@ export default function Hero() {
   const heard = rows.find((r) => r.kind === 'you')
   const events = rows.filter((r) => r.kind !== 'you')
   const pct = (spoken / WORDS.length) * 100
+
+  // The corner widgets further down follow this turn, and can run and cut it.
+  useEffect(() => {
+    turnStore.actions.run = run
+    turnStore.actions.cut = cut
+  }, [run, cut])
+  useEffect(() => {
+    turnStore.set({
+      state,
+      heard: heard?.text ?? '',
+      reply: WORDS.slice(0, spoken).join(' '),
+      seconds: ms / 1000,
+      running,
+      cut: wasCut,
+      over: wasCut || (replying && !running),
+    })
+  }, [state, heard?.text, spoken, ms, running, wasCut, replying])
 
   return (
     <header className="hero">

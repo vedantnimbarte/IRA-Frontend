@@ -22,6 +22,7 @@ export default function Nav() {
       </a>
       <div className="nav-links">
         <a href="#turn">The turn</a>
+        <a href="#screen">On screen</a>
         <a href="#gate">Confirmation</a>
         <a href="#tools">Tools</a>
         <a href="#honest">Unverified</a>

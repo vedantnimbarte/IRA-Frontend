@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero'
 import Nav from '@/components/Nav'
 import Turn from '@/components/Turn'
+import Widgets from '@/components/Widgets'
 
 const REPO = 'https://github.com/vedantnimbarte/IRA'
 
@@ -22,6 +23,26 @@ export default function Page() {
               </p>
             </div>
             <Turn />
+          </div>
+        </section>
+
+        <section id="screen">
+          <div className="wrap">
+            <div className="head">
+              <h2>Over whatever you are doing.</h2>
+              <p>
+                The orb sits in a corner of your screen. Two panels sit at the
+                top: what she heard, said and did, and the machine she runs on.
+                Clicks go straight through them, and they step aside for
+                anything full-screen.
+              </p>
+            </div>
+            <Widgets />
+            <p className="screen-note">
+              Keys, her voice, MCP servers and these panels are set in a window
+              that looks like this page. Hover the orb and press the gear, or use{' '}
+              <code>ira set</code> from a terminal. Nothing restarts.
+            </p>
           </div>
         </section>
 
@@ -246,7 +267,7 @@ export default function Page() {
       </main>
 
       <footer className="foot">
-        <span>45 tests, none of them need a network or a microphone.</span>
+        <span>133 tests, none of them need a network or a microphone.</span>
         <nav>
           <a href={`${REPO}/blob/main/docs/ARCHITECTURE.md`}>Architecture</a>
           <a href={`${REPO}/blob/main/docs/BASELINE.md`}>Measured latency</a>

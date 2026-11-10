@@ -925,6 +925,307 @@ pre .s {
   color: var(--cyan);
 }
 
+/* ── On screen: the corner widgets, as the app draws them ──── */
+
+/* A desk: the top of a screen, with a panel in each corner. */
+.desk {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  border: 1px solid var(--line);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 80%, transparent),
+    transparent 85%
+  );
+}
+
+/* `.widget`, not `.hud`: that one is the hero's SVG dial. */
+.widget {
+  --corner: color-mix(in srgb, var(--cyan) 55%, transparent);
+  --k: 14px;
+  width: min(100%, 400px);
+  padding: 1.5rem 1.6rem 1.35rem;
+  display: grid;
+  gap: 0.85rem;
+  align-content: start;
+  font-size: 14px;
+  color: var(--dim);
+  background: linear-gradient(var(--corner) 0 0) 0 0 / var(--k) 1px,
+    linear-gradient(var(--corner) 0 0) 0 0 / 1px var(--k),
+    linear-gradient(var(--corner) 0 0) 100% 0 / var(--k) 1px,
+    linear-gradient(var(--corner) 0 0) 100% 0 / 1px var(--k),
+    linear-gradient(var(--corner) 0 0) 0 100% / var(--k) 1px,
+    linear-gradient(var(--corner) 0 0) 0 100% / 1px var(--k),
+    linear-gradient(var(--corner) 0 0) 100% 100% / var(--k) 1px,
+    linear-gradient(var(--corner) 0 0) 100% 100% / 1px var(--k),
+    color-mix(in srgb, var(--void) 94%, transparent);
+  background-repeat: no-repeat;
+}
+
+.hud-sys {
+  width: min(100%, 320px);
+}
+
+.hud-mark,
+.hud-label,
+.hud-state,
+.hud-value,
+.hud-when {
+  font-size: 11.5px;
+  font-stretch: 125%;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+
+.hud-mark {
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--paper);
+}
+
+.hud-label {
+  color: var(--faint);
+}
+
+.hud-value {
+  color: var(--paper);
+}
+
+.hud-value em {
+  font-style: normal;
+  color: var(--amber);
+  margin-right: 0.7rem;
+}
+
+.hud-dim {
+  color: var(--faint);
+}
+
+.hud-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+}
+
+.hud-state {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--cyan);
+}
+
+.hud-state i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.hud-state[data-tone='idle'] {
+  color: var(--dim);
+}
+
+.hud-state[data-tone='bad'] {
+  color: #f08a94;
+}
+
+.hud-talk {
+  display: grid;
+  gap: 0.35rem;
+  min-height: 5.6rem;
+  margin: 0.4rem 0 0.2rem;
+}
+
+.hud-line {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: baseline;
+}
+
+.hud-you,
+.hud-ira {
+  font-size: 14px;
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+
+.hud-you {
+  color: var(--paper);
+  -webkit-line-clamp: 1;
+}
+
+.hud-ira {
+  color: var(--ice);
+  -webkit-line-clamp: 2;
+}
+
+/* The last turn, in proportion: hearing, thinking, then her voice. */
+.hud-bar {
+  display: flex;
+  gap: 2px;
+  height: 2px;
+  background: var(--line);
+}
+
+.hud-bar span:nth-child(1) {
+  background: var(--ice);
+}
+.hud-bar span:nth-child(2) {
+  background: var(--cyan);
+}
+.hud-bar span:nth-child(3) {
+  background: color-mix(in srgb, var(--cyan) 55%, transparent);
+}
+.hud-bar[data-cut='true'] span:nth-child(3) {
+  background: var(--amber);
+}
+
+.hud-split {
+  display: flex;
+  justify-content: space-between;
+  min-height: 1.3em;
+  font-size: 11.5px;
+  font-stretch: 125%;
+  letter-spacing: 0.06em;
+  color: var(--paper);
+}
+
+.hud-action {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  min-height: 1.5em;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.hud-action i {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  translate: 0 -1px;
+  background: var(--ice);
+}
+
+.hud-action i[data-done='true'] {
+  background: var(--cyan);
+}
+
+.hud-foot {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.35rem 1rem;
+  font-size: 13px;
+}
+
+.hud-foot > span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 420px) {
+  .hud-foot {
+    grid-template-columns: 1fr;
+  }
+}
+
+.hud-clock {
+  font-size: 46px;
+  font-weight: 300;
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--paper);
+}
+
+.hud-date {
+  color: var(--dim);
+  margin: -0.2rem 0 0.6rem;
+}
+
+.hud-meter {
+  display: grid;
+  grid-template-columns: 2.6rem 1fr 2.6rem;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hud-meter .hud-value {
+  text-align: right;
+}
+
+.hud-track {
+  height: 2px;
+  background: var(--line);
+}
+
+.hud-track span {
+  display: block;
+  height: 100%;
+  background: var(--cyan);
+  transition: width 0.4s var(--ease);
+}
+
+.hud-net {
+  margin-top: 0.3rem;
+}
+
+.hud-rule {
+  height: 1px;
+  background: var(--line);
+}
+
+.hud-next {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.hud-next li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.75rem;
+  align-items: baseline;
+}
+
+.hud-when {
+  color: var(--cyan);
+}
+
+.hud-what {
+  color: var(--paper);
+  font-size: 13.5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.screen-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.screen-note {
+  margin-top: 2.5rem;
+  color: var(--dim);
+  max-width: 62ch;
+}
+
 /* ── Reduced motion ─────────────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
